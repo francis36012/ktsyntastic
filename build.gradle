@@ -32,7 +32,7 @@ pluginBundle {
 
 	plugins {
 		ktSyntastic {
-			id = "ktsyntastic"
+			id = "com.fagyapong.ktsyntastic"
 			displayName = "Kotlinc Syntastic Plugin"
 		}
 	}
