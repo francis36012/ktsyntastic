@@ -19,7 +19,7 @@ class KotlincSyntasticPlugin implements Plugin<Project> {
 				  (Task.TASK_TYPE): KotlincSynstastic])
 
 			task.with {
-				resolver {
+				classpathResolver {
 					def cpath = project.files()
 					project.plugins.withType(JavaBasePlugin) {
 						project?.sourceSets.all {
@@ -27,6 +27,15 @@ class KotlincSyntasticPlugin implements Plugin<Project> {
 						}
 					}
 					cpath
+				}
+				sourceSetResolver {
+					def srcSets = project.files()
+					project.plugins.withType(JavaBasePlugin) {
+						project.sourceSets.all {
+							srcSets.from(it.kotlin.getSrcDirs().toArray())
+						}
+					}
+					srcSets
 				}
 			}
 		}

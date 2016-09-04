@@ -11,20 +11,33 @@ import org.gradle.api.tasks.TaskAction
 
 class KotlincSynstastic extends DefaultTask {
 
-	private Closure resolver
+	private Closure classpathResolver
+	private Closure sourceSetResolver
 
 	@InputFiles
 	@SkipWhenEmpty
 	FileCollection getClasspath() {
-		resolver.call()
+		classpathResolver.call()
+	}
+
+	@InputFiles
+	FileCollection getSourceSets() {
+		sourceSetResolver.call()
 	}
 
 	String getValue() {
-		classpath.files.join File.pathSeparator
+		def cpStr = classpath.filter({f -> f.exists()}).files.join(File.pathSeparator)
+		def srcStr = sourceSets.filter({f -> f.exists()}).files.join(" ")
+		"let g:syntastic_kotlin_kotlinc_classpath = \"$cpStr\"\n" +
+		"let g:syntastic_kotlin_kotlinc_sourcepath = \"$srcStr\""
 	}
 
-	void setResolver(Closure closure) {
-		resolver = closure
+	void setClasspathResolver(Closure closure) {
+		classpathResolver = closure
+	}
+
+	void setSourceSetResolver(Closure closure) {
+		sourceSetResolver = closure
 	}
 
 	@OutputFile
@@ -33,7 +46,7 @@ class KotlincSynstastic extends DefaultTask {
 	@TaskAction
 	void generate() {
 		output.withWriter {
-			it.write "let g:syntastic_kotlin_kotlinc_classpath = \"${value}\"\n"
+			it.write "${value}\n"
 		}
 	}
 }
