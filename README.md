@@ -15,7 +15,7 @@ This can be overridden in the build file by setting the property,
 - Apply this plugin:
 	```groovy
 	plugins {
-		id "com.fagyapong.ktsyntastic" version "0.1.0"
+		id "com.fagyapong.ktsyntastic" version "0.2.0"
 	}
 	```
 In order for the syntastic checker to make use of the generated file, the 
