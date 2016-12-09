@@ -33,7 +33,7 @@ setting `project.kotlincAle.prefKotlincOutput`
 - Apply this plugin:
 ```groovy
 plugins {
-	id "com.fagyapong.ktsyntastic" version "0.3.0"
+	id "com.fagyapong.ktsyntastic" version "0.3.1"
 }
 ```
 
