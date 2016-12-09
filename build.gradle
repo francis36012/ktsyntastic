@@ -21,19 +21,19 @@ dependencies {
 	compile localGroovy()
 }
 
-version = "0.2.0"
+version = "0.3.0"
 group = "com.fagyapong.ktsyntastic"
 
 pluginBundle {
 	website = "https://github.com/francis36012/ktsyntastic"
 	vcsUrl = "https://github.com/francis36012/ktsyntastic.git"
-	description = "A plugin for generating configuration file for kotlinc syntastic checker"
+	description = "A plugin for generating configuration files for various vim kotlinc checkers"
 	tags = ["syntastic", "kotlin", "vim", "utility"]
 
 	plugins {
 		ktSyntastic {
 			id = "com.fagyapong.ktsyntastic"
-			displayName = "Kotlinc Syntastic Plugin"
+			displayName = "Kotlinc Syntastic and ALE Plugin"
 		}
 	}
 }
